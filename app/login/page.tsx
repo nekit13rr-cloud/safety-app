@@ -1,208 +1,120 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase/client';
 
-type ProfileRole = 'employee' | 'responsible' | 'manager'
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default function LoginPage() {
-  const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState('')
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const redirectByRole = async (userId: string) => {
-    const { data: profileData, error } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', userId)
-      .single()
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
 
-    if (error || !profileData) {
-      setMessage('Не удалось определить роль пользователя')
-      return
-    }
-
-    const role = profileData.role as ProfileRole
-
-    if (role === 'employee') {
-      router.push('/report')
-      return
-    }
-
-    if (role === 'responsible') {
-      router.push('/dashboard/responsible')
-      return
-    }
-
-    if (role === 'manager') {
-      router.push('/dashboard/manager')
-      return
-    }
-
-    router.push('/report')
-  }
-
-  useEffect(() => {
-    const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
-
-      if (session) {
-        await redirectByRole(session.user.id)
-      }
-    }
-
-    checkSession()
-  }, [])
-
-  const handleLogin = async () => {
-    setLoading(true)
-    setMessage('')
-
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
-    })
+    });
 
-    setLoading(false)
-
-    if (error || !data.user) {
-      setMessage('Ошибка входа: ' + (error?.message ?? 'не удалось войти'))
-      return
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+    } else {
+      router.push('/');
     }
-
-    await redirectByRole(data.user.id)
-  }
+  };
 
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        background: '#f3f6fb',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-        fontFamily: 'Arial, sans-serif',
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          maxWidth: 440,
-          background: '#fff',
-          borderRadius: 28,
-          padding: 28,
-          boxShadow: '0 20px 50px rgba(15,23,42,0.08)',
-        }}
-      >
-        <button
-          onClick={() => router.push('/')}
-          style={{
-            border: 'none',
-            background: '#eef2ff',
-            color: '#3730a3',
-            borderRadius: 12,
-            padding: '10px 14px',
-            cursor: 'pointer',
-            fontWeight: 700,
-            marginBottom: 20,
-          }}
-        >
-          ← Назад
-        </button>
-
-        <h1
-          style={{
-            fontSize: 32,
-            margin: '0 0 10px 0',
-            color: '#0f172a',
-          }}
-        >
-          Вход
-        </h1>
-
-        <p
-          style={{
-            margin: '0 0 20px 0',
-            color: '#64748b',
-            lineHeight: 1.5,
-          }}
-        >
-          Войдите под своим логином и паролем.
-        </p>
-
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{
-            width: '100%',
-            padding: 14,
-            borderRadius: 16,
-            border: '1px solid #dbe2ea',
-            background: '#f8fafc',
-            marginBottom: 12,
-            boxSizing: 'border-box',
-            outline: 'none',
-          }}
-        />
-
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{
-            width: '100%',
-            padding: 14,
-            borderRadius: 16,
-            border: '1px solid #dbe2ea',
-            background: '#f8fafc',
-            marginBottom: 12,
-            boxSizing: 'border-box',
-            outline: 'none',
-          }}
-        />
-
-        {message && (
-          <div
+    <main style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f5f0ff 0%, #e9e2ff 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'Inter, sans-serif',
+      padding: '20px'
+    }}>
+      <div style={{
+        background: 'white',
+        borderRadius: '32px',
+        padding: '48px',
+        maxWidth: '400px',
+        width: '100%',
+        boxShadow: '0 20px 35px -10px rgba(0,0,0,0.1)'
+      }}>
+        <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#2d1b45', marginBottom: '8px' }}>Вход</h1>
+        <p style={{ color: '#7a6a8e', marginBottom: '32px' }}>Войдите в систему</p>
+        
+        <form onSubmit={handleLogin}>
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#3d2a55', marginBottom: '8px' }}>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{
+                width: '100%',
+                background: '#faf9ff',
+                border: '1px solid rgba(139,92,246,0.25)',
+                borderRadius: '16px',
+                padding: '12px 16px',
+                fontSize: '14px'
+              }}
+              required
+            />
+          </div>
+          
+          <div style={{ marginBottom: '24px' }}>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#3d2a55', marginBottom: '8px' }}>Пароль</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{
+                width: '100%',
+                background: '#faf9ff',
+                border: '1px solid rgba(139,92,246,0.25)',
+                borderRadius: '16px',
+                padding: '12px 16px',
+                fontSize: '14px'
+              }}
+              required
+            />
+          </div>
+          
+          {error && (
+            <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: '12px', padding: '12px', marginBottom: '20px', color: '#ef4444', fontSize: '13px' }}>
+              {error}
+            </div>
+          )}
+          
+          <button
+            type="submit"
+            disabled={loading}
             style={{
-              background: '#fee2e2',
-              color: '#b91c1c',
-              borderRadius: 14,
-              padding: 12,
-              marginBottom: 12,
-              fontSize: 14,
+              width: '100%',
+              background: 'linear-gradient(135deg, #8b5cf6, #6b4b89)',
+              border: 'none',
+              padding: '14px',
+              borderRadius: '40px',
+              color: 'white',
+              fontWeight: 600,
+              fontSize: '14px',
+              cursor: 'pointer'
             }}
           >
-            {message}
-          </div>
-        )}
-
-        <button
-          onClick={handleLogin}
-          disabled={loading}
-          style={{
-            width: '100%',
-            border: 'none',
-            borderRadius: 16,
-            padding: '14px 18px',
-            background: '#0f172a',
-            color: '#fff',
-            fontWeight: 700,
-            fontSize: 15,
-            cursor: 'pointer',
-          }}
-        >
-          {loading ? 'Входим...' : 'Войти'}
-        </button>
+            {loading ? 'Вход...' : 'Войти'}
+          </button>
+        </form>
       </div>
     </main>
-  )
+  );
 }
