@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f0ff 0%, #e9e2ff 50%, #f3edff 100%);
+  padding: 60px 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.header h1 {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6b4b89 0%, #8b5cf6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.header p {
+  font-size: 18px;
+  color: #5a4a6e;
+  font-weight: 400;
+}
+
+/* Карточки */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.card {
+  background: white;
+  border-radius: 32px;
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px -10px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.cardIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 40px;
+}
+
+.dangerIcon {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+  color: #f59e0b;
+}
+
+.behaviorIcon {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
+  color: #8b5cf6;
+}
+
+.incidentIcon {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+  color: #ef4444;
+}
+
+.card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d1b45;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #7a6a8e;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.cardButton {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.dangerButton {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.dangerButton:hover {
+  background: #f59e0b;
+  color: white;
+}
+
+.behaviorButton {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.behaviorButton:hover {
+  background: #8b5cf6;
+  color: white;
+}
+
+.incidentButton {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.incidentButton:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.card:hover .cardButton {
+  transform: scale(1.05);
+}
+
+/* Блок с пользователем */
+.userCard {
+  background: white;
+  border-radius: 24px;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userAvatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #8b5cf6, #6b4b89);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.userDetails h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d1b45;
+  margin-bottom: 4px;
+}
+
+.userDetails p {
+  font-size: 12px;
+  color: #7a6a8e;
+}
+
+.logoutBtn {
+  background: #f5f3ff;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 8px 20px;
+  border-radius: 40px;
+  color: #6b4b89;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  background: #ede8ff;
+  border-color: #8b5cf6;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+  .cardsGrid {
+    gap: 24px;
+  }
+  
+  .card {
+    padding: 24px;
+  }
+  
+  .card h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .header h1 {
+    font-size: 36px;
+  }
+  
+  .header p {
+    font-size: 16px;
+  }
+  
+  .userCard {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .userInfo {
+    flex-direction: column;
+  }
+}

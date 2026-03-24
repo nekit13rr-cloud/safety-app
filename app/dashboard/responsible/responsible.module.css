@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f0ff 0%, #e9e2ff 50%, #f3edff 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.header {
+  background: white;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.headerContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.logo h1 {
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6b4b89, #8b5cf6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userName {
+  font-weight: 600;
+  color: #2d1b45;
+}
+
+.logoutBtn {
+  background: #f5f3ff;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 8px 20px;
+  border-radius: 40px;
+  color: #6b4b89;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  background: #ede8ff;
+  border-color: #8b5cf6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.welcome {
+  margin-bottom: 32px;
+}
+
+.welcome h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d1b45;
+  margin-bottom: 8px;
+}
+
+.welcome p {
+  color: #7a6a8e;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.statCard {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.statCard h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7a6a8e;
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 800;
+  color: #2d1b45;
+  margin-bottom: 4px;
+}
+
+.statTrend {
+  font-size: 12px;
+  color: #10b981;
+}
+
+/* Карточки задач */
+.tasksSection {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.sectionHeader h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d1b45;
+}
+
+.taskCard {
+  background: #faf9ff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  transition: all 0.2s;
+}
+
+.taskCard:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.taskType {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.typeDanger {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.typeBehavior {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.typeIncident {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.taskStatus {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.statusPending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.statusInProgress {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.statusResolved {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.taskTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d1b45;
+  margin-bottom: 8px;
+}
+
+.taskDescription {
+  font-size: 14px;
+  color: #5a4a6e;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.taskMeta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #7a6a8e;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.taskActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.taskBtn {
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.startBtn {
+  background: #8b5cf6;
+  color: white;
+}
+
+.startBtn:hover {
+  background: #7c3aed;
+  transform: translateY(-1px);
+}
+
+.completeBtn {
+  background: #10b981;
+  color: white;
+}
+
+.completeBtn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: #7a6a8e;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+/* Форма добавления */
+.addForm {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.addForm h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d1b45;
+  margin-bottom: 20px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3d2a55;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  background: #faf9ff;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #2d1b45;
+  font-family: 'Inter', sans-serif;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.formGroup textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #8b5cf6, #6b4b89);
+  border: none;
+  padding: 12px 32px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submitBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+}
+
+/* Уведомления */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 24px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1100;
+  animation: slideIn 0.3s ease;
+}
+
+.toastSuccess {
+  border-left: 4px solid #10b981;
+}
+
+.toastError {
+  border-left: 4px solid #ef4444;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .taskHeader {
+    flex-direction: column;
+  }
+  
+  .taskActions {
+    justify-content: flex-start;
+  }
+}
